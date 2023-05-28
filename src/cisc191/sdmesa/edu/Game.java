@@ -1,13 +1,9 @@
 package cisc191.sdmesa.edu;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.File; 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import java.io.BufferedWriter;
-import java.io.Writer;
 
 /**
  * Lead Author(s): Umar Khan
@@ -31,41 +27,48 @@ import java.io.Writer;
  * 
  * (No Listed Publisher)
  * "Scanner and NextChar() in Java." GeeksforGeeks. Last modified April 11, 2023. 
- * https://www.geeksforgeeks.org/gfact-51-java-scanner-nextchar/#.
+ *  https://www.geeksforgeeks.org/gfact-51-java-scanner-nextchar/#.
  * 
  * (No Listed Publisher)
  * "File Input and Output." Department of Computer Science. Accessed May 8, 2023.
- * https://www.cs.utexas.edu/~mitra/csSummer2009/cs303/lectures/fileIO.
+ *  https://www.cs.utexas.edu/~mitra/csSummer2009/cs303/lectures/fileIO.
  *  
- * Version/date: 
+ *  Aggarwal, Shivi. "Java AWT | CardLayout Class." GeeksforGeeks. Last modified August 17, 2021. 
+ *  https://www.geeksforgeeks.org/java-awt-cardlayout-class/#.
+ *  
+ * Responsibilities of class:
+ * 	This class creates a new Board object in its constructor
+ * 	This class has a method that is used to add a line of stats to a file. This method takes in the player who won as well as the gameCount and appends a message to the StatsFile
+ * 	This class also has a method that is used to return the last line in the file
+ * 	This class also has a method that is used to delete the file which is used at the very end of the program
+ * 	This class also has a method that is used to return the Board object which is initialized in the parameter
+ * 	Every Game has a gameBoard
  * 
  */
 
 public class Game 
 {
-	//Each game has a Board, and has two Players (the User and Computer)
-	private Board gameBoard;
-	private Player userPlayer;
-	private Player computerPlayer;
+	//Instance variable
 	
-	//Constructor that takes two players as parameters and creates a new board for the game
-	public Game(Player newUserPlayer, Player newComputerPlayer) 
+	//Each game has a Board
+	private Board gameBoard;
+	
+	//Constructor that creates a new board for the game
+	public Game() 
 	{
 		gameBoard = new Board();
-		userPlayer = newUserPlayer;
-		computerPlayer = newComputerPlayer;
 	}
 
-	//Method that reads the file and displays its contents to the user
-	public static String displayStats(int gameCounter)
+	//Method that reads the file and returns the most recent line to the user
+	public static String returnLastGameResults(int gameCounter)
 	{
-		//Initialize String to hold the lines that will be returned
+		//Initialize String to hold the line that will be returned
 		String line = null;
 		
 		//Declare the Scanner object
 		Scanner scnr = null;
 		
-		//Try to open the file and loop through printing out its contents
+		//Try to open the file and loop through it while setting the String equal to the last line of it
 		try
 		{
 			//Create new File object using the "StatsFile" name
@@ -73,11 +76,15 @@ public class Game
 			
 			//Create the Scanner object
 			scnr = new Scanner(statsFile);
-
+			
+			//Loop through each line of the file
 			while (scnr.hasNextLine()) 
 			{
+				//Set the line String equal to the current line of the file
 	            line = scnr.nextLine();
 	        }
+			
+			//Return the line (which should contain the last line of the File)
 			return line;
 		}
 		//Catch any exceptions and print out the message
@@ -92,10 +99,11 @@ public class Game
 			if (scnr != null)
 				scnr.close();		
 		}
+		//Return null if an exception occurred while reading the file
 		return null;
 	}
 	
-	//Method that holds the result of every game in a file and takes the winning Player as a parameter
+	//Method that appends the result of every game in a file and takes the winning Player as well as the gameCount as parameters
 	public static void addStats(Player winner, int gameCount)
 	{	
 		//Declare the FileWriter and PrintWriter objects
@@ -114,9 +122,9 @@ public class Game
 			//Create our printWriter object
 			pWriter = new PrintWriter(writer);
 			
-			//If the "nobody" player was passed, the game was a draw. The "nobody" player is determined to be any player with negative wins
+			//If the passed player has negative wins, the game was a draw. The "numberOfDraws" player is determined to be any player with negative wins and is exclusively used to count the number of draws
 			if (winner.getWins() <= 0)
-				pWriter.append("|Game " + (gameCount) + " This game was a Draw!|" + "\n");
+				pWriter.append("|Game " + (gameCount) + " This game was a Draw! Current draws: " + -1 * winner.getWins() + " |" +  "\n");
 			
 			//If a player actually won, append this message to the end of the file
 			else

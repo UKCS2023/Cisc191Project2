@@ -23,13 +23,24 @@ import java.util.Random;
  * 
  * (No Listed Publisher)
  * "Scanner and NextChar() in Java." GeeksforGeeks. Last modified April 11, 2023. 
- * https://www.geeksforgeeks.org/gfact-51-java-scanner-nextchar/#.
+ *  https://www.geeksforgeeks.org/gfact-51-java-scanner-nextchar/#.
  * 
  * (No Listed Publisher)
  * "File Input and Output." Department of Computer Science. Accessed May 8, 2023.
- * https://www.cs.utexas.edu/~mitra/csSummer2009/cs303/lectures/fileIO.
+ *  https://www.cs.utexas.edu/~mitra/csSummer2009/cs303/lectures/fileIO.
  *  
- * Version/date: 
+ *  Aggarwal, Shivi. "Java AWT | CardLayout Class." GeeksforGeeks. Last modified August 17, 2021. 
+ *  https://www.geeksforgeeks.org/java-awt-cardlayout-class/#.
+ *  
+ * Responsibilities of class:
+ * 	Every Computer extends Player and implements the Placeable interface
+ * 	Every Computer has an array of integers used to hold the coordinates of its answer
+ * 	Every Computer has a method that returns the String "Computer"
+ * 	Every Computer has a method that plays its move on the gameBoard
+ * 	Every Computer has a method that checks if the chosen square is empty
+ * 	Every Computer has a method that converts the computer's integer choice into a Shape object then returns it
+ * 	Every Computer has a method that converts the computer’s choice into coordinates on the game board and returns them as an array of two integers
+ * 	Every Computer has a method that returns the coordinates of the computer's chosen square
  * 
  */
  
@@ -37,6 +48,7 @@ import java.util.Random;
 public class Computer extends Player implements Placeable 
 {
 	//Instance variable to hold the computer's choice of coordinates
+	
 	//Every Computer has coordinates where it will place its piece
 	private int [] answerCoordinates;
 	
@@ -79,7 +91,6 @@ public class Computer extends Player implements Placeable
 		{
 			answerCoordinates[0] = gameBoard.checkIfPlayerIsAboutToWin(getShape())[0];
 			answerCoordinates[1] = gameBoard.checkIfPlayerIsAboutToWin(getShape())[1];
-			System.out.println("Computer Move: Blocks");	
 		}
 		
 		//Else, randomly pick a move
@@ -90,9 +101,6 @@ public class Computer extends Player implements Placeable
 			
 			//Use the choiceToCoordinates method to translate the computer's input into coordinates on the board
 			answerCoordinates = choiceToCoordinates(userChoice);
-			
-			//Prints out the computer's choice
-			System.out.println("Computer Move: " + userChoice);
 		}
 		
 		

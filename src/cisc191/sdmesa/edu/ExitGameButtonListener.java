@@ -1,5 +1,9 @@
 package cisc191.sdmesa.edu;
 
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import java.awt.event.*;
+
 /**
  * Lead Author(s): Umar Khan
  * @author 
@@ -32,51 +36,36 @@ package cisc191.sdmesa.edu;
  *  https://www.geeksforgeeks.org/java-awt-cardlayout-class/#.
  *  
  * Responsibilities of class:
- * 	This class is an abstract class that is extended for both the User and Computer classes
- * 	This class has a method that is used to return the number of wins
- * 	This class a method that is used to increment the player's wins by a given value
- * 	This class has a method to set the Shape of a player
- * 	This class has a method to get the Shape of a player
- * 	This class has an abstract method getName as well
- * 	Every player has a Shape and a number of wins
- * 	 
+ *	This class implements the ActionListener interface to handle clicks on the exitGameButton
+ *	This class has an instance variable for the view
+ *	This class's constructor takes in a view and initializes the instance variable
+ *	This class's actionPerformed method is called when the exitGameButton is clicked. It displays a message, closes the file used to store the stats, and exits the program
+ * 
  */
- 
-public abstract class Player 
-{	
-	//Instance variables
+
+//Every ExitGameButtonListener is an ActionListener
+public class ExitGameButtonListener implements ActionListener
+{
+	//Instance variable
 	
-	//Every Player has a Shape 
-	//Ever Player has an integer to hold their number of wins
-	private Shape playerShape;
-	private int wins;
+	//Every ExitGameButtonListener has a view
+	private GameView view;
 	
-	//Method that returns win count of any player
-	public int getWins() 
-	{	
-		return wins;	
+	//Constructor that takes in a view and initializes the instance variable
+	public ExitGameButtonListener(GameView view)
+	{
+		this.view = view;
 	}
 	
-	//Method that increments player's wins by one
-	public void setWins(int increment) 
-	{	
-		wins += increment;	
+	//@Override the actionPerformed method
+	//This method displays a message, closes the file we were using to store the stats, and exits the program
+	public void actionPerformed(ActionEvent e)
+	{
+		//Create an Option Pane with a message thanking the user
+		JOptionPane.showMessageDialog(view,"Thanks For Playing!", "Message", JOptionPane.OK_OPTION);
+		//Close the file used
+		Game.closeFile();
+		//Exit the program
+		System.exit(0);
 	}
-	
-	//Method that returns shape of the player
-	public Shape getShape() 
-	{	
-		return playerShape;	
-	}
-	
-	//Method that sets the shape of the player
-	public void setShape(Shape newShape) 
-	{	
-		playerShape = newShape;	
-	}
-	
-	//Abstract method
-	
-	//This method returns the name of the Player
-	public abstract String getName();
 }

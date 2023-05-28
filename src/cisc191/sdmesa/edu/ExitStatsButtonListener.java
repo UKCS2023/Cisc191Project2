@@ -1,5 +1,8 @@
 package cisc191.sdmesa.edu;
 
+import java.awt.event.*;
+import java.awt.event.ActionEvent; 
+
 /**
  * Lead Author(s): Umar Khan
  * @author 
@@ -32,51 +35,32 @@ package cisc191.sdmesa.edu;
  *  https://www.geeksforgeeks.org/java-awt-cardlayout-class/#.
  *  
  * Responsibilities of class:
- * 	This class is an abstract class that is extended for both the User and Computer classes
- * 	This class has a method that is used to return the number of wins
- * 	This class a method that is used to increment the player's wins by a given value
- * 	This class has a method to set the Shape of a player
- * 	This class has a method to get the Shape of a player
- * 	This class has an abstract method getName as well
- * 	Every player has a Shape and a number of wins
- * 	 
+ * 	This class implements the ActionListener interface to handle clicks on the exitStatsButton
+ *	This class has an instance variable for the view
+ *	This class has a constructor that takes in a view and initializes the instance variable
+ *	This class has an actionPerformed method that is called when the exitStatsButton is clicked. It updates the visibility of the panels
+ * 
  */
- 
-public abstract class Player 
-{	
-	//Instance variables
+
+//Every ExitStatsButtonListener is an ActionListener
+public class ExitStatsButtonListener implements ActionListener
+{
+	//Instance variable
 	
-	//Every Player has a Shape 
-	//Ever Player has an integer to hold their number of wins
-	private Shape playerShape;
-	private int wins;
-	
-	//Method that returns win count of any player
-	public int getWins() 
-	{	
-		return wins;	
+	//Every ExitStatsButtonListener has a view
+	private GameView view;
+
+	//Constructor that takes in a view and initializes the view instance variable
+	public ExitStatsButtonListener(GameView view)
+	{
+		this.view = view;
 	}
 	
-	//Method that increments player's wins by one
-	public void setWins(int increment) 
-	{	
-		wins += increment;	
+	//@Override the actionPerformed method
+	//This method makes the menuPanel visible and the statsPanel invisible
+	public void actionPerformed(ActionEvent e)
+	{
+		view.getMenuPanel().setVisible(true);
+		view.getStatsPanel().setVisible(false);
 	}
-	
-	//Method that returns shape of the player
-	public Shape getShape() 
-	{	
-		return playerShape;	
-	}
-	
-	//Method that sets the shape of the player
-	public void setShape(Shape newShape) 
-	{	
-		playerShape = newShape;	
-	}
-	
-	//Abstract method
-	
-	//This method returns the name of the Player
-	public abstract String getName();
 }

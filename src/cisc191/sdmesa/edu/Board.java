@@ -22,18 +22,29 @@ package cisc191.sdmesa.edu;
  * 
  * (No Listed Publisher)
  * "Scanner and NextChar() in Java." GeeksforGeeks. Last modified April 11, 2023. 
- * https://www.geeksforgeeks.org/gfact-51-java-scanner-nextchar/#.
+ *  https://www.geeksforgeeks.org/gfact-51-java-scanner-nextchar/#.
  * 
  * (No Listed Publisher)
  * "File Input and Output." Department of Computer Science. Accessed May 8, 2023.
- * https://www.cs.utexas.edu/~mitra/csSummer2009/cs303/lectures/fileIO.
+ *  https://www.cs.utexas.edu/~mitra/csSummer2009/cs303/lectures/fileIO.
  *  
- * Version/date: 
+ *  Aggarwal, Shivi. "Java AWT | CardLayout Class." GeeksforGeeks. Last modified August 17, 2021. 
+ *  https://www.geeksforgeeks.org/java-awt-cardlayout-class/#.
+ *  
+ * Responsibilities of class:
+ * 	This class creates a 3x3 matrix of Shapes
+ * 	This class has a method to check if a player has won or if the game was a draw
+ * 	This class has a method that returns if the game was a draw
+ * 	This class has methods to get and set Shapes at certain indexes
+ * 	This class has a method to check if the player is one move away from winning and returns the coordinates required to block them
+ *	Every Board a a 3x3 matrix of Shapes and an isDraw boolean
  * 
  */
 
 public class Board 
 {	
+	//Instance variables
+	
 	//Every Board has a matrix of shapes
 	private Shape[][] currentBoard;
 	
@@ -340,5 +351,4 @@ public class Board
 		//Return the array containing the coordinates
 		return coordinates;
 	}
-
 }
